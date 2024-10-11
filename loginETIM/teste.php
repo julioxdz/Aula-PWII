@@ -1,11 +1,15 @@
 <?php
 include 'Contato.class.php';
+
 $contato = new Contato();
 
-$contato-> setNome ("fabio");
-$contato-> setEmail ("fabioclaret@gmail.com");
-$contato-> setSenha ("123");
+$resultado = $contato->checkUser("fabioclaret@gmail.com");
+if(!empty($resultado) ){
+    echo "
+    <script>
+        alert('Usuario ja cadastrado')
+    </script>";
+}else{
+    $contato->insertUser("nome" , "fabioclaret@gmail.com" , "senha");
+}
 
-echo "<h2>Nome: ".$contato->getNome()."<br>";
-echo "Email: ". $contato->getEmail()."<br>";
-echo "Senha: ". $contato->getSenha()."<br>";
